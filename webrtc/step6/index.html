@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name='keywords' content='WebRTC, HTML5, JavaScript' />
+<meta name='description' content='WebRTC Reference App' />
+<!--
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
+-->
+<base target='_blank'>
+
+<title>WebRTC client</title>
+
+<!-- <link rel='stylesheet' href='css/main.css' /> -->
+
+</head>
+
+<body>
+
+<table>
+    <tr>
+        <td align="right" rowspan="2">4:3</td>
+        <td><input type="radio" name="dim" value="QQVGA(160x120)">QQVGA(160x120)</td>
+        <td><input type="radio" name="dim" value="QVGA(320x240)">QVGA(320x240)</td>
+        <td><input type="radio" name="dim" value="VGA(640x480)" checked>VGA(640x480)</td>
+        <td><input type="radio" name="dim" value="SVGA(800x600)">SVGA(800x600)</td>
+    </tr><tr>
+        <td><input type="radio" name="dim" value="XGA(1024x768)">XGA(1024x768)</td>
+        <td><input type="radio" name="dim" value="XVGA(1280x960)">XVGA(1280x960)</td>
+        <!--
+        <td><input type="radio" name="dim" value="SXGA(1280x1024)">SXGA(1280x1024)</td>
+        -->
+        <td><input type="radio" name="dim" value="UXVGA(1600x1200)">UXVGA(1600x1200)</td>
+        <td><input type="radio" name="dim" value="QXGA(2048x1536)">QXGA(2048x1536)</td>
+        <td></td>
+    </tr><tr>
+        <td align="right">11:9</td>
+        <td><input type="radio" name="dim" value="QCIF(176x144)">QCIF(176x144)</td>
+        <td><input type="radio" name="dim" value="CIF(352x288)">CIF(352x288)</td>
+        <!--
+        <td><input type="radio" name="dim" value="DCIF(528x384)">DCIF(528x384)</td>
+        -->
+        <td><input type="radio" name="dim" value="4CIF(704x576)">4CIF(704x576)</td>
+        <td><input type="radio" name="dim" value="16CIF(1408x1152)">16CIF(1408x1152)</td>
+        <td></td>
+    </tr><tr>
+        <td align="right">16:9</td>
+        <td><input type="radio" name="dim" value="720p(1280x720)">720p(1280x720)</td>
+        <td><input type="radio" name="dim" value="1080p(1920x1080)">1080p(1920x1080)</td>
+        <td><input type="radio" name="dim" value="2K(2560x1440)">2K(2560x1440)</td>
+        <td><input type="radio" name="dim" value="4K(3480x2160)">4K(3480x2160)</td>
+    </tr><tr>
+        <td align="center" colspan="5">
+            <button id="callButton" style="width:180px">Call</button>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
+            <video id="localVideo" autoplay muted
+                width="484" height="396"></video>
+        </td>
+        <td>
+            <video id="remoteVideo" autoplay
+                width="484" height="396"></video>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <span id="localInfo"></span>
+        </td>
+        <td align="right">
+            <span id="remoteInfo"></span>
+        </td>
+    </tr>
+</table>
+
+<!--
+<div id='container'>
+
+  <div id='videos'>
+    <video id='localVideo' autoplay muted
+        width="484" height="396"></video>
+    <video id='remoteVideo' autoplay
+        width="484" height="396"></video>
+    <audio id='localAudio' autoplay muted></audio>
+    <audio id='remoteAudio' autoplay></audio>
+  </div>
+
+</div>
+-->
+
+<script src='/socket.io/socket.io.js'></script>
+<script src='js/lib/adapter.js'></script>
+<script src='js/main.js'></script>
+
+</body>
+</html>

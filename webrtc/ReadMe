@@ -1,0 +1,10 @@
+client install rpm:
+	cd rpm
+	rpm -ivh *.rpm 
+
+start server:
+	1:cd step6
+	2:nodejs server.js
+
+client connect server:
+	visit IP:2013
