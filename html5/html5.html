@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<SCRIPT>
+function IEPlayer() {
+	document.write('<OBJECT id="Player"');
+    document.write(' classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"');
+    document.write(' width=320 height=200></OBJECT>');
+	Player.URL="peixun.mp4";
+}
+function MozillaPlayer() {
+	var x = document.createElement("video");
+	x.setAttribute("autoplay","autoplay");
+	x.setAttribute("src","peixun.mp4");
+	x.setAttribute("width", "320");
+	x.setAttribute("height", "240");
+	x.setAttribute("controls", "controls");
+	document.body.appendChild(x);
+}
+
+function BrowserCheck() {
+   var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串 
+   var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器 
+   // var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器 
+   var isIE=window.ActiveXObject || "ActiveXObject" in window;
+   // var isEdge = userAgent.indexOf("Windows NT 6.1; Trident/7.0;") > -1 && !isIE; //判断是否IE的Edge浏览器 
+   var isEdge = userAgent.indexOf("Edge") > -1; //判断是否IE的Edge浏览器
+   var isFF = userAgent.indexOf("Firefox") > -1; //判断是否Firefox浏览器 
+   var isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1; //判断是否Safari浏览器 
+   var isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1&&!isEdge; //判断Chrome浏览器 
+  
+   if (isIE) {  
+   	  IEPlayer();
+      var reIE = new RegExp("MSIE (\\d+\\.\\d+);"); 
+      reIE.test(userAgent); 
+      var fIEVersion = parseFloat(RegExp["$1"]); 
+      if(userAgent.indexOf('MSIE 6.0')!=-1){
+        return "IE6";
+      }else if(fIEVersion == 7) 
+        { return "IE7";} 
+      else if(fIEVersion == 8) 
+        { return "IE8";} 
+      else if(fIEVersion == 9) 
+        { return "IE9";} 
+      else if(fIEVersion == 10) 
+        { return "IE10";} 
+      else if(userAgent.toLowerCase().match(/rv:([\d.]+)\) like gecko/)){ 
+            return "IE11";
+        } 
+      else
+        { return "0"}//IE版本过低
+    }//isIE end 
+      
+   if (isFF) {
+		MozillaPlayer();
+		return "Firefox";
+	} 
+    if (isOpera) { return "Opera";} 
+    if (isSafari) { return "Safari";} 
+    if (isChrome) { 
+		MozillaPlayer();
+		return "Chrome";
+	} 
+    if (isEdge) { return "Edge";} 
+}
+BrowserCheck();
+</SCRIPT>
+
+
+</body>
+</html>
