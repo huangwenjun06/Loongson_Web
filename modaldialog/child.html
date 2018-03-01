@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>child</title>
+<script language="javascript">  
+function trans(tag){  
+   if (tag==0){
+	 window.returnValue=false;
+   } else{  
+     window.returnValue =true;  
+   }
+   window.close();  
+}
+</script> 
+</head>
+
+<body>
+<INPUT id=button1 type=button value="传递给父窗口值为真" name=button1 onclick="trans(1)">  
+<INPUT id=button2 type=button value="传递给父窗口值为假" name=button2 onclick="trans(0)">  
+</body>
+</html>

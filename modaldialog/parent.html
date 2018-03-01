@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>模态对话框演示窗口</title>
+
+<script type="text/javascript" src="./jquery/jquery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+		var has_showModalDialog = !!window.showModalDialog;//定义一个全局变量判定是否有原生showModalDialog方法  
+		if(!has_showModalDialog){         
+			alert("don't support modalDialog");
+			noModalDialog();
+		} else {
+			alert("support modalDialog");
+			yesModalDialog();
+		}
+});
+<!-- support modal dialog -->
+function yesModalDialog() {
+	$('#edit').on('click', showmodal);
+}
+
+function showmodal(){  
+ var ret = window.showModalDialog("child.html",null,"dialogWidth:350px;dialogHeight:350px;help:no;status:no");  
+ if (ret){
+	 document.getElementById("childValue").value="true"; 
+ }else{  
+  	document.getElementById("childValue").value="false";
+ }  
+}  
+
+<!-- don't support modal dialog -->
+function noModalDialog() {
+	$('#edit').on('click', edit);
+    $('.btn_close').on('click', close_edit); 	
+};
+
+function edit() {
+        var left = ($(document).width() - parseInt($('.edit_popup').css('width'))) / 2;  
+        $('.edit_popup').css('left', left + 'px');  
+        $('.edit_popup').removeClass('none');  
+        $('#edit_mask').removeClass('none');  
+}
+
+function close_edit() {  
+        $('.edit_popup').addClass('none');  
+        $('#edit_mask').addClass('none');  
+}
+
+function trans(tag){  
+   if (tag==0){
+	 document.getElementById("childValue").value ="false";	 
+   } else{  
+     document.getElementById("childValue").value ="true" 
+   } 
+   close_edit();
+}
+
+</script>
+<style type="text/css">
+.none {
+    display: none;  
+}
+.edit_popup {
+	z-index: 100;
+    position: fixed;  
+    top: 100px;  
+    left: 100px;  
+    width: 300px;  
+    height: 100px;  
+    background-color: #2aabd2;  
+}  
+.edit_popup .title {  
+    height: 40px;  
+    position: relative;  
+}  
+.edit_popup .btn_close {  
+    position: absolute;  
+    right: 10px;  
+    top: 10px;  
+}  
+#edit_mask {  
+    position: fixed;  
+    top: 0;  
+    right:0;  
+    bottom:0;  
+    left:0;  
+    width:100%;  
+    height:100%;  
+    opacity: 0.4;  
+    background:rgb(0, 0, 0);  
+    z-index: 50;  
+}  
+a {  
+	text-decoration: none;  
+}  
+</style>
+
+<body>
+<div> 
+	<input type="text" id="childValue" value="">  
+    <INPUT id="edit" type=button value="点击给文本框赋值" name=button>  
+</div>  
+
+<!--弹出编辑框-->  
+<div id="edit_mask" class="none"></div> <!--遮罩层-->  
+
+<div class="none edit_popup">    
+	<div class="title" >
+		<a href="javascript:void(0)" class="btn_close">X</a>
+	</div> 
+    <INPUT id=button1 type=button value="传递给父窗口值为真" name=button1 onclick="trans(1)">  
+	<INPUT id=button2 type=button value="传递给父窗口值为假" name=button2 onclick="trans(0)"> 
+</div>
+
+</body>
+</html>
